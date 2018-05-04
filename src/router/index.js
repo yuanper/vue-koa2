@@ -11,6 +11,11 @@ import Theme from '@/views/theme/Index'
 import List from '@/views/theme/List'
 import FileUpdate from '@/views/theme/FileUpdate'
 import FileUpload from '@/views/theme/FileUpload'
+import Test from '@/views/theme/Test'
+import NewTheme from '@/views/theme/NewTheme'
+import Label from '@/views/theme/Label'
+import Wallpaper from '@/views/wallpaper/Index'
+import MyWallpaper from '@/views/wallpaper/MyWallpaper'
 
 Vue.use(Router)
 
@@ -18,7 +23,7 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '/Sign',
       name: 'Sign',
       component: Sign
     },
@@ -28,42 +33,64 @@ export default new Router({
       component: Admin,
       children: [
         {
-          path: 'System',
+          path: 'system',
           component: System,
           children: [
             {
-              path: 'User',
+              path: 'user',
               component: User
             },
             {
-              path: 'Group',
+              path: 'group',
               component: Group
             },
             {
-              path: 'Menu',
+              path: 'menu',
               component: Menu
             },
             {
-              path: 'EditPsd',
+              path: 'editpsd',
               component: EditPsd
             }
           ]
         },
         {
-          path: 'Theme',
+          path: 'theme',
           component: Theme,
           children: [
             {
-              path: 'List',
+              path: 'list',
               component: List
             },
             {
-              path: 'FileUpdate',
+              path: 'fileupdate',
               component: FileUpdate
             },
             {
-              path: 'FileUpload',
+              path: 'fileupload',
               component: FileUpload
+            },
+            {
+              path: 'test',
+              component: Test
+            },
+            {
+              path: 'newtheme',
+              component: NewTheme
+            },
+            {
+              path: 'label',
+              component: Label
+            }
+          ]
+        },
+        {
+          path: 'wallpaper',
+          component: Wallpaper,
+          children: [
+            {
+              path: 'mywallpaper',
+              component: MyWallpaper
             }
           ]
         }

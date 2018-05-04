@@ -50,9 +50,14 @@
                     password: this.password
                 }
                 console.log(qs.stringify(data))
-                Axios.get('/user/login',qs.stringify(data))
+                Axios.get('/api/user/login?'+qs.stringify(data))
                     .then((res) => {
                         console.log(res)
+                        if(res.status === 200){
+                            localStorage.setItem('userType',res.data.userType);
+                            localStorage.setItem('userName',res.data.userName);
+                            this.$router.push('/Admin/system/user')
+                        }
                     })
             },
             signup(){
@@ -61,7 +66,7 @@
                     password: this.password
                 }
                 console.log(qs.stringify(data))
-                Axios.get('/user/sign'+ '?' +qs.stringify(data))
+                Axios.get('/api/user/sign'+ '?' +qs.stringify(data))
                     .then((res)=>{
                         console.log(res)
                     }).catch((err) =>{

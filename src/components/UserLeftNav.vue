@@ -1,12 +1,12 @@
 <template>
     <div>
         <div class="nav-left">            
-            <div class="nav-list"><i><img src="./../assets/image/main/menu25.png"/></i><router-link to="/Admin/System/User">用户管理</router-link></div>
-            <div class="nav-list"><i><img src="./../assets/image/main/menu27.png"/></i><router-link to="/Admin/System/Group">用户组管理</router-link></div>
-            <div class="nav-list"><i><img src="./../assets/image/main/menu7.png"/></i><router-link to="/Admin/System/Menu">菜单管理</router-link></div>
-            <div class="nav-list"><i><img src="./../assets/image/main/menu28.png"/></i><router-link to="/Admin/System/EditPsd">修改密码</router-link></div>
-            <div class="nav-list"><i><img src="./../assets/image/main/menu36.png"/></i><router-link to="/Admin/System/Cache">缓存管理</router-link></div>
-            <div class="nav-list"><i><img src="./../assets/image/main/menu8.png"/></i><router-link to="/Admin/System/Config">配置管理</router-link></div>            
+            <div class="nav-list"><i><img src="./../assets/image/main/menu25.png"/></i><router-link to="/Admin/system/user">用户管理</router-link></div>
+            <div class="nav-list"><i><img src="./../assets/image/main/menu27.png"/></i><router-link to="/Admin/system/group">用户组管理</router-link></div>
+            <div class="nav-list"><i><img src="./../assets/image/main/menu7.png"/></i><router-link to="/Admin/system/menu">菜单管理</router-link></div>
+            <div class="nav-list"><i><img src="./../assets/image/main/menu28.png"/></i><router-link to="/Admin/system/editpsd">修改密码</router-link></div>
+            <div class="nav-list"><i><img src="./../assets/image/main/menu36.png"/></i><router-link to="/Admin/system/cache">缓存管理</router-link></div>
+            <div class="nav-list"><i><img src="./../assets/image/main/menu8.png"/></i><router-link to="/Admin/system/config">配置管理</router-link></div>            
         </div>
     </div>
 </template>

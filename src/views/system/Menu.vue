@@ -13,119 +13,213 @@
                           <el-table-column label="URL"  prop="url" align="center"></el-table-column>
                           <el-table-column label="图标"  prop="icon" align="center"></el-table-column>
                           <el-table-column label="排序"  prop="sort" align="center"></el-table-column>
-                          <el-table-column label="创建时间"  prop="createTime" align="center"></el-table-column>
-                          <el-table-column label="状态"  prop="status" align="center"></el-table-column>
-                          <el-table-column label="操作"  align="center"></el-table-column>
+                          <el-table-column label="创建时间"  prop="create_time" align="center"></el-table-column>
+                          <el-table-column label="状态"  prop="status" align="center">
+                              <template slot-scope="scope">
+                                  <span v-show="scope.row.status === 1">显示</span>
+                                  <span v-show="scope.row.status === 2">隐藏</span>
+                              </template>
+                          </el-table-column>
+                          <el-table-column label="操作"  align="center">
+                              <template slot-scope="scope">
+                                  <el-button type="text" size="small" @click="editMenuInfo(scope.row)">编辑</el-button>
+                                  <el-button type="text" size="small" @click="delMenuInfo(scope.row)">删除</el-button>
+                              </template>
+                          </el-table-column>
                         </el-table>
                     </div>
                 </el-tab-pane>
                 <el-tab-pane label="添加菜单" name="second">
                     <div class="form">
-                        <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
-                            <el-form-item label="用户名" prop="userName" >
-                                <el-input v-model="ruleForm2.userName" auto-complete="off" type="text"></el-input>
+                        <el-form :model="ruleForm" status-icon ref="ruleForm" label-width="100px" class="demo-ruleForm">
+                            <el-form-item label="标题" prop="title" >
+                                <el-input v-model="ruleForm.title" auto-complete="off" type="text"></el-input>
                             </el-form-item>
-                            <el-form-item label="用户邮箱" prop="email">
-                                <el-input v-model="ruleForm2.email" auto-complete="off" type="email"></el-input>
+                            <el-form-item label="URL" prop="url">
+                                <el-input v-model="ruleForm.url" auto-complete="off"></el-input>
                             </el-form-item>
-                            <el-form-item label="密码" prop="pass">
-                                <el-input type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input>
+                            <el-form-item label="图标" prop="icon">
+                                <el-input  v-model="ruleForm.icon" auto-complete="off"></el-input>
                             </el-form-item>
-                            <el-form-item label="确认密码" prop="checkPass">
-                                <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off"></el-input>
+                            <el-form-item label="上级菜单" >
+                                <el-input auto-complete="off"></el-input>
                             </el-form-item>
-                            <el-form-item label="用户组">
-                                <el-select v-model="ruleForm2.group" placeholder="请选择用户组">
-                                  <el-option label="设计师" value="设计师"></el-option>
-                                  <el-option label="测试" value="测试"></el-option>
-                                  <el-option label="运营" value="运营"></el-option>
-                                  <el-option label="财务" value="财务"></el-option>
-                                  <el-option label="主题测试" value="主题测试"></el-option>
-                                  <el-option label="资源运营" value="资源运营"></el-option>
-                                  <el-option label="壁纸测试" value="壁纸测试"></el-option>
-                                </el-select>
+                            <el-form-item label="排序" prop="sort">
+                                <el-input v-model="ruleForm.sort" ></el-input>
+                            </el-form-item>
+                            <el-form-item label="状态" prop="status">
+                                <el-radio-group v-model="ruleForm.status">
+                                  <el-radio label="1">显示</el-radio>
+                                  <el-radio label="2">隐藏</el-radio>
+                                </el-radio-group>
                             </el-form-item>
                             <el-form-item>
-                                <el-button type="primary" @click="submitForm('ruleForm2')">提交</el-button>
-                                <el-button @click="resetForm('ruleForm2')">重置</el-button>
+                                <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+                                <el-button @click="resetForm('ruleForm')">重置</el-button>
                             </el-form-item>
                         </el-form>
                     </div>
                 </el-tab-pane>
             </el-tabs>
+            <el-dialog title="修改菜单"
+                :visible.sync="editDialogVisible"
+                width="500px"
+                center>
+                <div class="form">
+                    <el-form :model="ruleForm" label-width="100px">
+                        <el-form-item label="标题" prop="title" >
+                            <el-input v-model="ruleForm.title" auto-complete="off" type="text"></el-input>
+                        </el-form-item>
+                        <el-form-item label="URL" prop="url">
+                            <el-input v-model="ruleForm.url" auto-complete="off"></el-input>
+                        </el-form-item>
+                        <el-form-item label="图标" prop="icon">
+                            <el-input  v-model="ruleForm.icon" auto-complete="off"></el-input>
+                        </el-form-item>
+                        <el-form-item label="上级菜单" >
+                            <el-input auto-complete="off"></el-input>
+                        </el-form-item>
+                        <el-form-item label="排序" prop="sort">
+                            <el-input v-model="ruleForm.sort" ></el-input>
+                        </el-form-item>
+                        <el-form-item label="状态">
+                            <el-radio-group v-model="ruleForm.status">
+                                <el-radio :label="1">显示</el-radio>
+                                <el-radio :label="2">隐藏</el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                    </el-form>
+                </div>
+                <span slot="footer" class="dialog-footer">
+                    <el-button @click="closeDialog">取消</el-button>
+                    <el-button @click="confirmEdit('ruleForm')" type="primary">确定</el-button>
+                </span>
+            </el-dialog>
         </div>
 </template>
 <script type="text/javascript">
+    import Axios from 'Axios'
     export default {
         data() {
-            var validatePass = (rule,value,callback) => {
-                if(value === '') {
-                    callback(new Error('请输入密码'))
-                }else{
-                    if(this.ruleForm2.checkPass !== ''){
-                        this.$refs.ruleForm2.validateField('checkPass')
-                    }
-                    callback()
-                }
-            };
-            var validatePass2 = (rule, value, callback)=> {
-                if(value === ''){
-                    callback(new Error('请再次输入密码'))
-                }else if(value !== this.ruleForm2.pass){
-                    callback(new Error('两次输入的密码不一致'))
-                }else{
-                    callback()
-                }
-            }
             return {
                 activeTab: 'first',
                 searchKey: '',
-                tableData: [
-                    {
-                        id: 1,
-                        title: '系统',
-                        url: 'zengfanping.com',
-                        icon: '超级管理员',
-                        sort: 1,
-                        createTime: '2018-04-20 08:00',
-                        status: '显示',
-                    },
-                    {
-                        id: 2,
-                        title: '主题',
-                        url: 'zengfanping.com',
-                        icon: '超级管理员',
-                        sort: 2,
-                        createTime: '2018-04-20 08:00',
-                        status: '显示',
-                    },
-                ],
-                ruleForm2: {
-                    userName: '',
-                    email: '',
-                    pass: '',
-                    checkPass: '',
-                    group: ''
+                tableData: null,
+                ruleForm: {
+                    title: '',
+                    url: '',
+                    icon: '',
+                    sort: '',
+                    status: ''
                 },
-                rules2: {
-                    pass: [
-                        {validator: validatePass,trigger: 'blur'}
-                    ],
-                    checkPass: [
-                        {validator: validatePass2,trigger: 'blur'}
-                    ]
-                }
+                editDialogVisible: false
             }
+        },
+        mounted(){
+            this.$nextTick(() => {
+                this.getMenuList()
+            })
         },
         methods: {
             handleClick(tab,event){
                 console.log(tab)
             },
+            getMenuList(){
+                Axios.get('/api/menu/getmenulist')
+                    .then((res) => {
+                        if(res.status === 200){
+                            this.tableData = res.data.data
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            },
             submitForm(formName) {
-
+                this.$refs[formName].validate((valid) => {
+                    if(valid) {
+                        Axios.post('/api/menu/addnewmenu',this.ruleForm)
+                            .then((res) => {
+                                if(res.status === 200){
+                                    this.$message({
+                                        showClose: true,
+                                        message: res.data.message,
+                                        center: true,
+                                        type: 'success'
+                                    })
+                                    this.resetForm(formName)
+                                }
+                            })
+                    }
+                })
             },
             resetForm(formName) {
                 this.$refs[formName].resetFields();
+            },
+            editMenuInfo(row){
+                this.editDialogVisible = true;
+                this.ruleForm.title = row.title;
+                this.ruleForm.url = row.url;
+                this.ruleForm.icon = row.icon;
+                this.ruleForm.sort = row.sort;
+                this.ruleForm.status = row.status;
+                this.ruleForm.id = row.id;
+            },
+            delMenuInfo(row){
+                let data = {
+                    id: row.id
+                };
+                this.$confirm('此操作将会永久删除此菜单信息，是否继续？','提示',{
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    Axios.post('/api/menu/deletemenuinfo',data)
+                        .then((res) => {
+                            if(res.status === 200){
+                                this.$message({
+                                    showClose: true,
+                                    message: res.data.message,
+                                    center: true,
+                                    type: 'success'
+                                })
+                                this.getMenuList()
+                            }
+                        }).catch((err) => {
+                            console.log(err)
+                        })
+                }).catch(() => {
+                    this.$message({
+                        showClose: true,
+                        type: 'info',
+                        message: '已取消删除！',
+                        center: true
+                    })
+                })
+            },
+            closeDialog(){
+                this.editDialogVisible = false;
+            },
+            confirmEdit(formName){
+                this.$refs[formName].validate((valid) => {
+                    if(valid){
+                        Axios.post('/api/menu/updatemenuinfo',this.ruleForm)
+                            .then((res) => {
+                                if(res.status === 200){
+                                    this.editDialogVisible = false;
+                                    this.$message({
+                                        showClose: true,
+                                        type: 'success',
+                                        message: res.data.message,
+                                        center: true
+                                    })
+                                    this.getMenuList()
+                                }
+                            }).catch((err) => {
+                                console.log(err)
+                            })
+                    }
+                })
             }
         },
     }

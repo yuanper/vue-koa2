@@ -46,6 +46,34 @@ const user = {
             createTime: result.create_time
         }
         return userInfo
+    },
+    /**
+     * 获取所有用户信息
+     * @param {object|null}
+     * @return {object}
+     */
+    async getAllUserInfo(params){
+        let result = await userModel.getAllUserInfo(params);
+        return result;
+    },
+    /**
+     * 修改用户信息
+     * @param {object|null}
+     * @return {object|null}
+     */
+    async updateUserInfo(params){
+        let result = await userModel.updateUserInfo(params);
+        return result
+    },
+    
+    /**
+     * 删除用户信息
+     * @param {object} id
+     * @return {object}
+     */
+    async deleteUserInfo(params){
+        let result = await userModel.deleteUserInfo(params);
+        return result
     }
 }
 

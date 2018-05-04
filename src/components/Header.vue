@@ -3,11 +3,11 @@
         <div class="header-nav">
             <div class="header-nav-logo"></div>
             <div class="nav-list">
-                <ul>
-                    <li><router-link to="/Admin/System/User" class="nav-title">系统</router-link></li>
-                    <li><router-link to="/Admin/Theme/List" class="nav-title">主题</router-link></li>
-                    <li><router-link to="/Admin/Wallpapermy/index" class="nav-title">壁纸</router-link></li>
-                    <li><router-link to="/Admin/Wallpaperlive/index" class="nav-title">动态壁纸</router-link></li>
+                <ul id="header-nav" @click="headerNav($event)">
+                    <li><router-link to="/Admin/system/user" class="nav-title" exact>系统</router-link></li>
+                    <li><router-link to="/Admin/theme/list" class="nav-title">主题</router-link></li>
+                    <li><router-link to="/Admin/wallpaper/mywallpaper" class="nav-title">壁纸</router-link></li>
+                    <li><router-link to="/Admin/wallpaperlive/index" class="nav-title">动态壁纸</router-link></li>
                     <li><router-link to="/Admin/Clockmy/index" class="nav-title">时钟</router-link></li>
                     <li><router-link to="/Admin/Font/index" class="nav-title">字体</router-link></li>
                     <li><router-link to="/Admin/Weather/index" class="nav-title">天气主题</router-link></li>
@@ -31,7 +31,7 @@
                     </el-select>
                 </div>
                 <div class="user-img"></div>
-                <div class="user-name">超级管理员：admin</div>
+                <div class="user-name">{{userType}}：{{userName}}</div>
                 <el-dropdown>
                     <span class="el-dropdown-link">
                         <div class="msg_icon"></div>
@@ -52,6 +52,8 @@
     export default {
         data(){
             return {
+                userType: '',
+                userName: '',
                 typeOptions: [
                     {
                         value: '选项一',
@@ -68,7 +70,18 @@
                 ],
                 type: '稳重型'
             }
-        }
+        },
+        mounted(){
+            this.$nextTick(()=>{
+                this.userType = localStorage.getItem('userType');
+                this.userName = localStorage.getItem('userName');
+            })
+        },
+        methods: {
+            headerNav(ev) {
+                
+            }
+        },
     }
 </script>
 <style lang="stylus" scoped>
@@ -108,6 +121,8 @@
                     .nav-title
                         color: #000
                         text-decoration: none
+                    .router-link-active
+                        color: #fe7735 
             .login-info
                 display:inline-block
                 vertical-align: top

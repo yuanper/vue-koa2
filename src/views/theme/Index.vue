@@ -1,16 +1,16 @@
 <template>
     <div class="container">
         <div class="nav-left">            
-            <div class="nav-list"><i><img src="./../../assets/image/theme/menu1.png"/></i><router-link to="/Admin/Theme/List">我的主题</router-link></div>
-            <div class="nav-list"><i><img src="./../../assets/image/theme/menu9.png"/></i><router-link to="/Admin/Theme/FileUpdate">我的更新包</router-link></div>
-            <div class="nav-list"><i><img src="./../../assets/image/theme/menu3.png"/></i><router-link to="/Admin/Theme/FileUpload">上传主题</router-link></div>
-            <div class="nav-list"><i><img src="./../../assets/image/theme/menu34.png"/></i><router-link to="/Admin/Theme/Test">主题测试</router-link></div>
-            <div class="nav-list"><i><img src="./../../assets/image/theme/menu7.png"/></i><router-link to="/Admin/Theme/Resource">资源管理</router-link></div>
-            <div class="nav-list"><i><img src="./../../assets/image/theme/menu4.png"/></i><router-link to="/Admin/Theme/NewTheme">新品推荐</router-link></div>            
-            <div class="nav-list"><i><img src="./../../assets/image/theme/menu2.png"/></i><router-link to="/Admin/Theme/Label">标签管理</router-link></div>            
-            <div class="nav-list"><i><img src="./../../assets/image/theme/menu9.png"/></i><router-link to="/Admin/Theme/UpNew">主题上新</router-link></div>            
-            <div class="nav-list"><i><img src="./../../assets/image/theme/menu10.png"/></i><router-link to="/Admin/Theme/HotWords">搜索热词</router-link></div>            
-            <div class="nav-list"><i><img src="./../../assets/image/theme/menu11.png"/></i><router-link to="/Admin/Theme/HotTheme">热门主题</router-link></div>            
+            <div class="nav-list"><i><img src="./../../assets/image/theme/menu1.png"/></i><router-link to="/Admin/theme/list">我的主题</router-link></div>
+            <div class="nav-list"><i><img src="./../../assets/image/theme/menu9.png"/></i><router-link to="/Admin/theme/fileupdate">我的更新包</router-link></div>
+            <div class="nav-list"><i><img src="./../../assets/image/theme/menu3.png"/></i><router-link to="/Admin/theme/fileupload">上传主题</router-link></div>
+            <div class="nav-list"><i><img src="./../../assets/image/theme/menu34.png"/></i><router-link to="/Admin/theme/test">主题测试</router-link></div>
+            <div class="nav-list"><i><img src="./../../assets/image/theme/menu7.png"/></i><router-link to="/Admin/theme/resource">资源管理</router-link></div>
+            <div class="nav-list"><i><img src="./../../assets/image/theme/menu4.png"/></i><router-link to="/Admin/theme/newtheme">新品推荐</router-link></div>            
+            <div class="nav-list"><i><img src="./../../assets/image/theme/menu2.png"/></i><router-link to="/Admin/theme/label">标签管理</router-link></div>            
+            <div class="nav-list"><i><img src="./../../assets/image/theme/menu9.png"/></i><router-link to="/Admin/theme/upNew">主题上新</router-link></div>            
+            <div class="nav-list"><i><img src="./../../assets/image/theme/menu10.png"/></i><router-link to="/Admin/theme/hotwords">搜索热词</router-link></div>            
+            <div class="nav-list"><i><img src="./../../assets/image/theme/menu11.png"/></i><router-link to="/Admin/theme/hottheme">热门主题</router-link></div>            
         </div>
         <div class="nav-right">
             <router-view />
